@@ -1,5 +1,8 @@
 <?php
-include '../../../config/koneksi.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tanah_blambangan/config/koneksi.php';
+
+$database = new Database();
+$koneksi = $database->getConnection();
 
 // ambil data jika edit
 $id = $_GET['id'] ?? null;
@@ -16,7 +19,6 @@ if ($id) {
     $query = mysqli_query($koneksi, "SELECT * FROM destinasi_produk WHERE id_destinasi = $id");
     $data = mysqli_fetch_assoc($query);
 }
-
 // ambil kategori untuk dropdown
 $kategori = mysqli_query($koneksi, "SELECT * FROM kategori");
 ?>
@@ -70,7 +72,15 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori");
             <input type="file" name="gambar" class="form-control">
         </div>
 
-        <button type="submit" name="simpan" class="btn btn-success">Simpan</button>
-        <a href="admin-page/dashboard.php" class="btn btn-secondary">Kembali</a>
+        <button type="submit" 
+                name="simpan" 
+                class="btn btn-success">
+            Simpan
+        </button>
+
+        <a href="index.php" 
+           class="btn btn-secondary">
+            Kembali
+        </a>
     </form>
 </div>

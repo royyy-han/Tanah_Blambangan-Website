@@ -1,3 +1,7 @@
+<?php
+$page = $_GET['page'] ?? 'dashboard';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -114,7 +118,7 @@
                         </a>
                     </li>
                     <li class="nav-item mt-4">
-                        <a class="nav-link text-white" href="index.php" target="_blank">
+                        <a class="nav-link text-white" href="http://localhost/bonekamu-web/index.php">
                             <i class="fas fa-external-link-alt me-2"></i> Lihat Website
                         </a>
                     </li>
@@ -148,7 +152,29 @@
                 </div>
             </nav>
 
-            <?php include "../../route/admin.php"; ?>
+           <?php
+
+              $page = $_GET['page'] ?? 'dashboard';
+
+              switch ($page) {
+
+                  case 'dashboard':
+                      include('admin-page/dashboard.php');
+                      break;
+
+                  case 'form':
+                      include('admin-page/form.php');
+                      break;
+
+                  case 'logout':
+                      include('logout.php');
+                      break;
+
+                  default:
+                      include('admin-page/dashboard.php');
+                      break;
+              }
+              ?>
 
 <!-- admin/layout/footer.php -->
         </main>

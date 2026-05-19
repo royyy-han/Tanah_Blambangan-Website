@@ -1,7 +1,25 @@
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "tanah_blambangan");
 
-if (!$koneksi) {
-    die("Koneksi gagal: " . mysqli_connect_error());
+class Database {
+
+    private $connection;
+
+    public function getConnection() {
+
+        $this->connection = mysqli_connect(
+            "localhost",
+            "root",
+            "",
+            "tanah_blambangan"
+        );
+
+        if (!$this->connection) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+
+        mysqli_set_charset($this->connection, "utf8");
+
+        return $this->connection;
+    }
 }
 ?>
