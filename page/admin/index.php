@@ -1,4 +1,20 @@
 <?php
+session_start();
+
+// proteksi login
+if (!isset($_SESSION['admin'])) {
+    header("Location: login.php");
+    exit;
+}
+
+// no cache browser
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+header("Expires: 0");
+?>
+
+<?php
 $page = $_GET['page'] ?? 'dashboard';
 ?>
 
@@ -82,7 +98,7 @@ $page = $_GET['page'] ?? 'dashboard';
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="?page=logout">
+                    <a class="nav-link" href="logout.php">   
                         <i class="fas fa-sign-out-alt me-2"></i> Logout
                     </a>
                 </li>
@@ -118,12 +134,12 @@ $page = $_GET['page'] ?? 'dashboard';
                         </a>
                     </li>
                     <li class="nav-item mt-4">
-                        <a class="nav-link text-white" href="http://localhost/bonekamu-web/index.php">
+                        <a class="nav-link text-white" href="http://localhost/tanah_blambangan/index.php">
                             <i class="fas fa-external-link-alt me-2"></i> Lihat Website
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="admin.php?page=logout">
+                        <a class="nav-link text-white" href="logout.php">
                             <i class="fas fa-sign-out-alt me-2"></i> Logout
                         </a>
                     </li>
@@ -145,37 +161,32 @@ $page = $_GET['page'] ?? 'dashboard';
                                  ?>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="?page=logout">Logout</a></li>
+                                <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </nav>
 
-           <?php
+          <?php
 
-              $page = $_GET['page'] ?? 'dashboard';
+            $page = $_GET['page'] ?? 'dashboard';
 
-              switch ($page) {
+            switch ($page) {
 
-                  case 'dashboard':
-                      include('admin-page/dashboard.php');
-                      break;
+                case 'dashboard':
+                    include('admin-page/dashboard.php');
+                    break;
 
-                  case 'form':
-                      include('admin-page/form.php');
-                      break;
+                case 'form':
+                    include('admin-page/form.php');
+                    break;
 
-                  case 'logout':
-                      include('logout.php');
-                      break;
-
-                  default:
-                      include('admin-page/dashboard.php');
-                      break;
-              }
-              ?>
-
+                default:
+                    include('admin-page/dashboard.php');
+                    break;
+            }
+            ?>
 <!-- admin/layout/footer.php -->
         </main>
     </div>
