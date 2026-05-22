@@ -8,9 +8,9 @@ class Database {
 
         $this->connection = mysqli_connect(
             "localhost",
-            "root",
-            "",
-            "tanah_blambangan"
+            "ojokerro_blambangan",
+            "royhan1888@abcd",
+            "ojokerro_tanahblambangandb"
         );
 
         if (!$this->connection) {
