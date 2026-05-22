@@ -9,7 +9,7 @@ body {
 }
 
 .hero {
-    background-image: url('../gambar/background.jpg');
+    background-image: url('/tanah_blambangan/assetsWeb/gambar/background.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -516,3 +516,153 @@ footer {
   color: #f4b400; /* kuning bintang */
 }
 
+
+/* DETAIL PAGE */
+
+.detail-container{
+    width: 90%;
+    margin: 60px auto;
+
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+}
+
+.detail-image img{
+    width: 500px;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.detail-content{
+    flex: 1;
+}
+
+.detail-content h1{
+    font-size: 42px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.detail-info{
+    margin-bottom: 30px;
+}
+
+.detail-info p{
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.detail-deskripsi h3{
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.detail-deskripsi p{
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.btn-kembali{
+    display: inline-block;
+    margin-top: 40px;
+    padding: 12px 25px;
+    background: black;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    .detail-container{
+        flex-direction: column;
+    }
+
+    .detail-image img{
+        width: 100%;
+        height: auto;
+    }
+
+}
+
+.scroll-container{
+    display: flex;
+    gap: 25px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scroll-behavior: smooth;
+}
+
+.scroll-container::-webkit-scrollbar{
+    height: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb{
+    background: #ccc;
+    border-radius: 20px;
+}
+
+.card-wisata{
+    min-width: 320px;
+    max-width: 320px;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: 0.3s;
+    flex-shrink: 0;
+}
+
+.card-wisata:hover{
+    transform: translateY(-5px);
+}
+
+.card-wisata img{
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+}
+
+.card-body{
+    padding: 20px;
+}
+
+.card-body p{
+    font-size: 15px;
+    color: #444;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.jelajahi{
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #111;
+    font-weight: 700;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    /* border-bottom: 4px solid #555; */
+    transition: 0.3s;
+}
+
+.jelajahi:hover{
+    color: #000;
+    border-color: #000;
+}
+
+@media(max-width:768px){
+
+    .card-wisata{
+        min-width: 270px;
+        max-width: 270px;
+    }
+
+    .card-wisata img{
+        height: 350px;
+    }
+}

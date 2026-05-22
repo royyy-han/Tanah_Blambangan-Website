@@ -26,7 +26,7 @@ if (isset($_POST['simpan'])) {
 
         move_uploaded_file(
             $_FILES['gambar']['tmp_name'],
-            $_SERVER['DOCUMENT_ROOT'] . '/tanah_blambangan/assetsWeb/' . $gambar
+            $_SERVER['DOCUMENT_ROOT'] . '/tanah_blambangan/assetsWeb/upload/' . $gambar
         );
     }
 

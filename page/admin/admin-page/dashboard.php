@@ -78,8 +78,9 @@ $result = mysqli_query($koneksi, $query);
                             <?php if (!empty($row['gambar'])) { ?>
 
                                 <img
-                                    src="/tanah_blambangan/assets/<?= $row['gambar']; ?>"
-                                    width="100"
+                                    src="/tanah_blambangan/assetsWeb/upload/<?= $row['gambar']; ?>"
+                                    width="150"
+                                    class="img-thumbnail mb-3"
                                 >
 
                             <?php } else { ?>

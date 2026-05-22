@@ -7,7 +7,7 @@
             <a href="index.php" class="nav-link underline">Beranda</a>
         </li>
         <li class="nav-item">
-            <a href="destinasi.php" class="nav-link underline">Destinasi</a>
+            <a href="index.php?page=destinasi" class="nav-link underline">Destinasi</a>
         </li>
         </ul>
         </div>

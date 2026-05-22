@@ -2,7 +2,7 @@
   <div class="footer-container">
     <!-- Logo -->
     <div class="footer-logo">
-      <img src="assetsWeb/gambar/Tanah Blambangan Logo Design.png" alt="">
+      <img src="/tanah_blambangan/assetsWeb/gambar/Tanah Blambangan Logo Design.png" alt="">
     </div>
 
     <!-- Menu -->
@@ -19,8 +19,8 @@
     <div class="footer-contact">
       <h4>Hubungi Kami</h4>
       <div class="social-icons">
-        <a href="https://www.instagram.com/ryhannn_o/"><img src="assetsWeb/gambar/icons8-instagram-48.png" alt="Instagram"></a>
-        <a href="https://web.whatsapp.com/"><img src="assetsWeb/gambar/icons8-whatsapp-48.png" alt="WhatsApp"></a>
+        <a href="https://www.instagram.com/ryhannn_o/"><img src="/tanah_blambangan/assetsWeb/gambar/icons8-instagram-48.png" alt="Instagram"></a>
+        <a href="https://web.whatsapp.com/"><img src="/tanah_blambangan/assetsWeb/gambar/icons8-whatsapp-48.png" alt="WhatsApp"></a>
       </div>
     </div>
   </div>

@@ -1,240 +1,185 @@
+<?php
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/tanah_blambangan/config/koneksi.php';
+
+$database = new Database();
+$koneksi = $database->getConnection();
+
+/*
+|--------------------------------------------------------------------------
+| PARIWISATA ALAM
+|--------------------------------------------------------------------------
+*/
+
+$queryAlam = mysqli_query($koneksi, "
+    SELECT 
+        dp.*,
+        k.nama_kategori
+    FROM destinasi_produk dp
+    JOIN kategori k
+    ON dp.id_kategori = k.id_kategori
+    WHERE k.nama_kategori = 'Alam'
+");
+/*
+|--------------------------------------------------------------------------
+| PARIWISATA BUDAYA
+|--------------------------------------------------------------------------
+*/
+
+$queryBudaya = mysqli_query($koneksi, "
+    SELECT 
+        dp.*,
+        k.nama_kategori
+    FROM destinasi_produk dp
+    JOIN kategori k
+    ON dp.id_kategori = k.id_kategori
+    WHERE k.nama_kategori = 'Budaya'
+");
+
+?>
+
 <div class="hightlight">
     <h1>Semua Destinasi Wisata</h1>
 </div>
 
- <div class="favorit">
-    <h2>Temukan berbagai keindahan alam dan budaya Banyuwangi di sini.</h2>
+<div class="favorit">
+    <h2>
+        Temukan berbagai keindahan alam dan budaya Banyuwangi di sini.
+    </h2>
 </div>
 
-<div class="container my-4">
-  <h4>Pariwisata Alam</h4>
+<!-- ================================================= -->
+<!-- PARIWISATA ALAM -->
+<!-- ================================================= -->
 
-  <div class="scroll-container">
-    <!-- Card 1 -->
-    <div class="card-wisata">
-      <img src="assetsWeb/gambar/kawah-ijen.jpg">
-      <div class="card-body">
-        <p><strong>Nama Wisata</strong><br>Kawah Ijen</p>
-        <p><strong>Lokasi</strong><br>Kab. Banyuwangi, Jawa Timur</p>
-        <p><strong>Rating</strong><br>⭐⭐⭐⭐☆</p>
-        <a class="jelajahi" href="page/detail/alam/kawahIjen.html">Jelajahi</a>
-      </div>
+<div class="container my-5">
+
+    <h4 class="mb-4 fw-bold">
+        Pariwisata Alam
+    </h4>
+
+    <div class="scroll-container">
+
+        <?php while($alam = mysqli_fetch_assoc($queryAlam)) { ?>
+
+            <div class="card-wisata">
+
+                <img 
+                    src="/tanah_blambangan/assetsWeb/upload/<?= $alam['gambar']; ?>" 
+                    alt="<?= $alam['nama_destinasi']; ?>"
+                >
+
+                <div class="card-body">
+
+                    <p>
+                        <strong>Nama Wisata</strong><br>
+                        <?= $alam['nama_destinasi']; ?>
+                    </p>
+
+                    <p>
+                        <strong>Lokasi</strong><br>
+                        <?= $alam['lokasi']; ?>
+                    </p>
+
+                    <p>
+                        <strong>Rating</strong><br>
+
+                        <?php
+                            $rating = round($alam['rating']);
+
+                            for($i = 1; $i <= 5; $i++){
+
+                                if($i <= $rating){
+                                    echo "⭐";
+                                } else {
+                                    echo "☆";
+                                }
+                            }
+                        ?>
+
+                    </p>
+
+                    <a 
+                        class="jelajahi"
+                        href="index.php?page=detail&id=<?= $alam['id_destinasi']; ?>"
+                    >
+                        Jelajahi
+                    </a>
+
+                </div>
+
+            </div>
+
+        <?php } ?>
+
     </div>
 
-    <!-- Card 2 -->
-    <div class="card-wisata">
-      <img src="assetsWeb/gambar/pulau-merah.jpg">
-      <div class="card-body">
-        <p><strong>Nama Wisata</strong><br>Pulau Merah</p>
-        <p><strong>Lokasi</strong><br>Kab. Banyuwangi, Jawa Timur</p>
-        <p><strong>Rating</strong><br>⭐⭐⭐⭐☆</p>
-        <a class="jelajahi" href="page/detail/alam/pulauMerah.html">Jelajahi</a>
-      </div>
-    </div>
-
-    <!-- Card 3 -->
-    <div class="card-wisata">
-      <img src="assetsWeb/gambar/plengkung.jpg">
-      <div class="card-body">
-        <p><strong>Nama Wisata</strong><br>Pantai Plengkung (G-Land)</p>
-        <p><strong>Lokasi</strong><br>Kab. Banyuwangi, Jawa Timur</p>
-        <p><strong>Rating</strong><br>⭐⭐⭐⭐☆</p>
-        <a class="jelajahi" href="page/detail/alam/plengkung.html">Jelajahi</a>
-      </div>
-    </div>
-
-     <!-- Card 4 -->
-    <div class="card-wisata">
-      <img src="assetsWeb/gambar/alas-purwo.jpg">
-      <div class="card-body">
-        <p><strong>Nama Wisata</strong><br>Taman Nasional Alas Purwo</p>
-        <p><strong>Lokasi</strong><br>Kab. Banyuwangi, Jawa Timur</p>
-        <p><strong>Rating</strong><br>⭐⭐⭐⭐☆</p>
-        <a class="jelajahi" href="page/detail/alam/alasPurwo.html">Jelajahi</a>
-      </div>
-    </div>
-
-     <!-- Card 5 -->
-    <div class="card-wisata">
-      <img src="assetsWeb/gambar/baluran.jpg">
-      <div class="card-body">
-        <p><strong>Nama Wisata</strong><br>Taman Nasional Baluran</p>
-        <p><strong>Lokasi</strong><br>Kab. Banyuwangi, Jawa Timur</p>
-        <p><strong>Rating</strong><br>⭐⭐⭐⭐☆</p>
-        <a class="jelajahi" href="page/detail/alam/baluran.html">Jelajahi</a>
-      </div>
-    </div>
-
-     <!-- Card 6 -->
-    <div class="card-wisata">
-      <img src="assetsWeb/gambar/bangsring.jpg">
-      <div class="card-body">
-        <p><strong>Nama Wisata</strong><br>Bangsring Underwater</p>
-        <p><strong>Lokasi</strong><br>Kab. Banyuwangi, Jawa Timur</p>
-        <p><strong>Rating</strong><br>⭐⭐⭐⭐☆</p>
-        <a class="jelajahi" href="page/detail/alam/bangsring.html">Jelajahi</a>
-      </div>
-    </div>
-
-     <!-- Card 7 -->
-    <div class="card-wisata">
-      <img src="assetsWeb/gambar/wedi ireng.jpg">
-      <div class="card-body">
-        <p><strong>Nama Wisata</strong><br>Pantai Wedi Ireng</p>
-        <p><strong>Lokasi</strong><br>Kab. Banyuwangi, Jawa Timur</p>
-        <p><strong>Rating</strong><br>⭐⭐⭐⭐☆</p>
-        <a class="jelajahi" href="page/detail/alam/wediIreng.html">Jelajahi</a>
-      </div>
-    </div>
-
-     <!-- Card 8 -->
-    <div class="card-wisata">
-      <img src="assetsWeb/gambar/pantai-boom.jpg">
-      <div class="card-body">
-        <p><strong>Nama Wisata</strong><br>Pantai Boom</p>
-        <p><strong>Lokasi</strong><br>Kab. Banyuwangi, Jawa Timur</p>
-        <p><strong>Rating</strong><br>⭐⭐⭐⭐☆</p>
-        <a class="jelajahi" href="page/detail/alam/boom.html">Jelajahi</a>
-      </div>
-    </div>
-
-     <!-- Card 9 -->
-    <div class="card-wisata">
-      <img src="assetsWeb/gambar/air terjun.jpg">
-      <div class="card-body">
-        <p><strong>Nama Wisata</strong><br>Air Terjun Jagir</p>
-        <p><strong>Lokasi</strong><br>Kab. Banyuwangi, Jawa Timur</p>
-        <p><strong>Rating</strong><br>⭐⭐⭐⭐☆</p>
-        <a class="jelajahi" href="page/detail/alam/jagir.html">Jelajahi</a>
-      </div>
-    </div>
-
-     <!-- Card 10 -->
-    <div class="card-wisata">
-      <img src="assetsWeb/gambar/teluk hijau.jpg">
-      <div class="card-body">
-        <p><strong>Nama Wisata</strong><br>Teluk Hijau (Green Bay)</p>
-        <p><strong>Lokasi</strong><br>Kab. Banyuwangi, Jawa Timur</p>
-        <p><strong>Rating</strong><br>⭐⭐⭐⭐☆</p>
-        <a class="jelajahi" href="page/detail/alam/telukHijau.html">Jelajahi</a>
-      </div>
-    </div>
-  </div>
 </div>
 
+<!-- ================================================= -->
+<!-- PARIWISATA BUDAYA -->
+<!-- ================================================= -->
 
-<div class="container my-4">
-  <h4>Pariwisata Budaya</h4>
+<div class="container my-5">
 
-  <div class="scroll-container">
-    <!-- Card 1 -->
-    <div class="card-wisata">
-      <img src="assetsWeb/gambar/Desa Wisata Osing Kemiren.jpg">
-      <div class="card-body">
-        <p><strong>Nama Wisata</strong><br>Desa Wisata Osing Kemiren</p>
-        <p><strong>Lokasi</strong><br>Kab. Banyuwangi, Jawa Timur</p>
-        <p><strong>Rating</strong><br>⭐⭐⭐⭐☆</p>
-        <a class="jelajahi" href="#">Jelajahi</a>
-      </div>
+    <h4 class="mb-4 fw-bold">
+        Pariwisata Budaya
+    </h4>
+
+    <div class="scroll-container">
+
+        <?php while($budaya = mysqli_fetch_assoc($queryBudaya)) { ?>
+
+            <div class="card-wisata">
+
+                <img 
+                    src="/tanah_blambangan/assetsWeb/upload/<?= $budaya['gambar']; ?>" 
+                    alt="<?= $budaya['nama_destinasi']; ?>"
+                >
+
+                <div class="card-body">
+
+                    <p>
+                        <strong>Nama Wisata</strong><br>
+                        <?= $budaya['nama_destinasi']; ?>
+                    </p>
+
+                    <p>
+                        <strong>Lokasi</strong><br>
+                        <?= $budaya['lokasi']; ?>
+                    </p>
+
+                    <p>
+                        <strong>Rating</strong><br>
+
+                        <?php
+                            $rating = round($budaya['rating']);
+
+                            for($i = 1; $i <= 5; $i++){
+
+                                if($i <= $rating){
+                                    echo "⭐";
+                                } else {
+                                    echo "☆";
+                                }
+                            }
+                        ?>
+
+                    </p>
+
+                    <a 
+                        class="jelajahi"
+                        href="index.php?page=detail&id=<?= $budaya['id_destinasi']; ?>"
+                    >
+                        Jelajahi
+                    </a>
+
+                </div>
+
+            </div>
+
+        <?php } ?>
+
     </div>
 
-    <!-- Card 2 -->
-    <div class="card-wisata">
-      <img src="assetsWeb/gambar/Festival Gandrung Sewu.jpg">
-      <div class="card-body">
-        <p><strong>Nama Wisata</strong><br>Festival Gandrung Sewu</p>
-        <p><strong>Lokasi</strong><br>Kab. Banyuwangi, Jawa Timur</p>
-        <p><strong>Rating</strong><br>⭐⭐⭐⭐☆</p>
-        <a class="jelajahi" href="#">Jelajahi</a>
-      </div>
-    </div>
-
-    <!-- Card 3 -->
-    <div class="card-wisata">
-      <img src="assetsWeb/gambar/Banyuwangi Ethno Carnival.jpg">
-      <div class="card-body">
-        <p><strong>Nama Wisata</strong><br>Banyuwangi Ethno Carnival</p>
-        <p><strong>Lokasi</strong><br>Kab. Banyuwangi, Jawa Timur</p>
-        <p><strong>Rating</strong><br>⭐⭐⭐⭐☆</p>
-        <a class="jelajahi" href="#">Jelajahi</a>
-      </div>
-    </div>
-
-     <!-- Card 4 -->
-    <div class="card-wisata">
-      <img src="assetsWeb/gambar/Ritual Seblang.jpg">
-      <div class="card-body">
-        <p><strong>Nama Wisata</strong><br>Ritual Seblang</p>
-        <p><strong>Lokasi</strong><br>Kab. Banyuwangi, Jawa Timur</p>
-        <p><strong>Rating</strong><br>⭐⭐⭐⭐☆</p>
-        <a class="jelajahi" href="#">Jelajahi</a>
-      </div>
-    </div>
-
-     <!-- Card 5 -->
-    <div class="card-wisata">
-      <img src="assetsWeb/gambar/Ritual Tumpeng Sewu.jpg">
-      <div class="card-body">
-        <p><strong>Nama Wisata</strong><br>Ritual Tumpeng Sewu</p>
-        <p><strong>Lokasi</strong><br>Kab. Banyuwangi, Jawa Timur</p>
-        <p><strong>Rating</strong><br>⭐⭐⭐⭐☆</p>
-        <a class="jelajahi" href="#">Jelajahi</a>
-      </div>
-    </div>
-
-     <!-- Card 6 -->
-    <div class="card-wisata">
-      <img src="assetsWeb/gambar/Ritual Kebo-keboan.jpg">
-      <div class="card-body">
-        <p><strong>Nama Wisata</strong><br>Ritual Kebo-keboan</p>
-        <p><strong>Lokasi</strong><br>Kab. Banyuwangi, Jawa Timur</p>
-        <p><strong>Rating</strong><br>⭐⭐⭐⭐☆</p>
-        <a class="jelajahi" href="#">Jelajahi</a>
-      </div>
-    </div>
-
-     <!-- Card 7 -->
-    <div class="card-wisata">
-      <img src="assetsWeb/gambar/Ritual Seblang Olehsari.jpg">
-      <div class="card-body">
-        <p><strong>Nama Wisata</strong><br>Ritual Seblang Olehsari</p>
-        <p><strong>Lokasi</strong><br>Kab. Banyuwangi, Jawa Timur</p>
-        <p><strong>Rating</strong><br>⭐⭐⭐⭐☆</p>
-        <a class="jelajahi" href="#">Jelajahi</a>
-      </div>
-    </div>
-
-     <!-- Card 8 -->
-    <div class="card-wisata">
-      <img src="assetsWeb/gambar/Barong Osing.jpg">
-      <div class="card-body">
-        <p><strong>Nama Wisata</strong><br>Barong Osing</p>
-        <p><strong>Lokasi</strong><br>Kab. Banyuwangi, Jawa Timur</p>
-        <p><strong>Rating</strong><br>⭐⭐⭐⭐☆</p>
-        <a class="jelajahi" href="#">Jelajahi</a>
-      </div>
-    </div>
-
-     <!-- Card 9 -->
-    <div class="card-wisata">
-      <img src="assetsWeb/gambar/Rumah Adat Osing.jpg">
-      <div class="card-body">
-        <p><strong>Nama Wisata</strong><br>Rumah Adat Osing</p>
-        <p><strong>Lokasi</strong><br>Kab. Banyuwangi, Jawa Timur</p>
-        <p><strong>Rating</strong><br>⭐⭐⭐⭐☆</p>
-        <a class="jelajahi" href="#">Jelajahi</a>
-      </div>
-    </div>
-
-     <!-- Card 10 -->
-    <div class="card-wisata">
-      <img src="assetsWeb/gambar/Seni Musik Angklung Caruk.jpg">
-      <div class="card-body">
-        <p><strong>Nama Wisata</strong><br>Seni Musik Angklung Caruk</p>
-        <p><strong>Lokasi</strong><br>Kab. Banyuwangi, Jawa Timur</p>
-        <p><strong>Rating</strong><br>⭐⭐⭐⭐☆</p>
-        <a class="jelajahi" href="#">Jelajahi</a>
-      </div>
-    </div>
-  </div>
 </div>

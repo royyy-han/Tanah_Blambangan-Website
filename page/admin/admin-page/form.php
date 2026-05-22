@@ -67,7 +67,7 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori");
         <div class="mb-3">
             <label>Upload Gambar</label><br>
             <?php if ($data['gambar']) { ?>
-                <img src="../../assets/<?= $data['gambar']; ?>" width="120"><br><br>
+                <img src="/tanah_blambangan/assetsWeb/upload/<?= $data['gambar']; ?>" width="120"><br><br>
             <?php } ?>
             <input type="file" name="gambar" class="form-control">
         </div>

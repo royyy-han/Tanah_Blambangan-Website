@@ -1,14 +1,33 @@
 <?php 
-    
-    require_once('config/koneksi.php');
 
-    $genre = new GenreController();
+require_once('config/koneksi.php');
 
-    $page = isset($_GET['page']) ? $_GET['page'] : 'home';
+$page = $_GET['page'] ?? 'home';
 
-            if($page == 'home') { include "page/home.php"; }
-            else if ($page == 'shopall') { include "page/shop-all.php"; }
-            else if ($page == 'detail') { include "page/detail.php"; }
-            else if($page == 'genre') { $genre->index(); }
-            else if($page == 'admin') { include "page/admin/dashboard.php"; }
+switch($page){
+
+    case 'home':
+        include "page/home.php";
+        break;
+
+    case 'destinasi':
+        include "page/destinasi2.php";
+        break;
+
+    case 'shopall':
+        include "page/shop-all.php";
+        break;
+
+    case 'detail':
+        include "page/detail.php";
+        break;
+
+    case 'admin':
+        include "page/admin/index.php";
+        break;
+
+    default:
+        include "page/home.php";
+        break;
+}
 ?>
